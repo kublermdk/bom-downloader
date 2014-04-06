@@ -118,7 +118,7 @@ startDownloader = function() { // This should automatically download a new image
 
 stillRunning = function() { // Runs every 10mins
     console.log( "." );
-    _.delay( stillRunning(), 600000 );
+    _.delay( stillRunning(), 60000000 );
 };
 
 
