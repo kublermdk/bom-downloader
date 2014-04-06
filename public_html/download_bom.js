@@ -1,8 +1,8 @@
 var http = require( 'http' );
 var fs = require( 'fs' );
 var moment = require( 'moment' );
-var _ = require( 'underscore' );
-
+var underscore = require( 'underscore-node' );
+// _.uniqueId('contact_');
 
 var dateFormat = 'YYYYMMDDHH';
 var baseHTTP = 'http://';
@@ -111,22 +111,21 @@ startDownloader = function() { // This should automatically download a new image
             console.log( "You've already downloaded " + createFilename() );
         }
     } );
-    _.delay( function() {
+    underscore.delay( function() {
         startDownloader();
     }, 3600000 );
 };
 
 stillRunning = function() { // Runs every 10mins
     console.log( "." );
-    _.delay( stillRunning(), 60000000 );
+    underscore.delay( stillRunning(), 600000 );
 };
-
 
 var checkPreviousDownloads = function() {
 // This should check the last 48hrs worth of images and ensure the appropriate images exist.
 
     timeNow = moment().utc().subtract( 5, 'hours' );
-    _.each( _.range( 0, 48 ), function( value, key ) {
+    underscore.each( underscore.range( 0, 48 ), function( value, key ) {
         var time = timeNow.subtract( value, 'hours' );
         var filename = createFilename( time );
         var url = createURL( time );
@@ -134,7 +133,7 @@ var checkPreviousDownloads = function() {
         fs.exists( filename, function( exists ) { // Folder exists?
             if ( !exists ) {
                 console.log( "The previous downloads file " + filename + " doesn't exist. Downloading : " + url );
-                _.delay( function( url, filename ) {
+                underscore.delay( function( url, filename ) {
                     if ( url && url !== '' && filename && filename !== '' ) {
                         download( url, filename, function() {
                             console.log( "Finished downloading : " + filename );
@@ -158,3 +157,6 @@ checkPreviousDownloads();
 startDownloader(); // Start the image downloading
 stillRunning(); // Outputs a dot every 10mins
 //console.log( "Finished and hopefully the file " + createFilename() + " has been created" );
+
+
+
