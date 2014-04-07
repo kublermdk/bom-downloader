@@ -111,14 +111,12 @@ startDownloader = function() { // This should automatically download a new image
             console.log( "You've already downloaded " + createFilename() );
         }
     } );
-    underscore.delay( function() {
-        startDownloader();
-    }, 3600000 );
+    underscore.delay( startDownloader, 3600000 );
 };
 
 stillRunning = function() { // Runs every 10mins
-    console.log( "." );
-    underscore.delay( stillRunning(), 600000 );
+    console.log( "- Still running the node.js BOM downloader at " + moment().format( "MMMM Do YYYY, h:mm:ss a" ) );
+    underscore.delay( stillRunning, 600000 );
 };
 
 var checkPreviousDownloads = function() {
