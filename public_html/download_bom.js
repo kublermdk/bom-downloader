@@ -51,8 +51,8 @@ http.createServer( function( req, res ) {
     res.writeHead( 200, {'Content-Type' : 'text/html'} );
     var downloadURL = createURL();
     res.end( '<h1>BOM.gov.au image downloader</h1>\n<a href="' + downloadURL + '" target="_blank">' + downloadURL + '<br /><img src="' + downloadURL + '" />' );
-} ).listen( 3001 );
-console.log( 'Server running at http://127.0.0.1:3001/' );
+} ).listen( 3005 );
+console.log( 'Server running at http://127.0.0.1:3005/' );
 console.log( 'The current time is : ' + moment().utc().format( 'YYYYMMDDHHMM' ) );
 console.log( 'The URL to download is : ' + createURL() );
 
